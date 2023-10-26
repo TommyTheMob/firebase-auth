@@ -1,9 +1,18 @@
 import React, {useState} from 'react';
 import {Button, Container, Form} from "react-bootstrap";
+import googleLogo from '../assets/Google__G__Logo.svg';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const AppForm = ({ title, handleClick }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const onGoogleBtnClick = () => {
+        const auth = getAuth()
+        const provider = new GoogleAuthProvider()
+        signInWithPopup(auth, provider)
+            .then(res => console.log(res))
+    }
 
     return (
         <Container className='mt-5 d-flex justify-content-center align-items-center'>
@@ -20,9 +29,13 @@ const AppForm = ({ title, handleClick }) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
-                <Container className='d-flex justify-content-center align-items-center'>
+                <Container className='d-flex flex-column justify-content-center align-items-center'>
                     <Button variant="success" onClick={() => handleClick(email, password)}>
                         {title}
+                    </Button>
+                    <Button onClick={onGoogleBtnClick} variant='outline-secondary' className='mt-1'>
+                        <img className='me-2' src={googleLogo} alt="google-logo"/>
+                        Continue with Google
                     </Button>
                 </Container>
             </Form>
