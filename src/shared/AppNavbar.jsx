@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link, Outlet} from "react-router-dom";
 import logo from '../assets/firebase-icon.svg'
 
