@@ -22,7 +22,7 @@ const HomePage = () => {
 
     return (
         <Container className='text-center'>
-            <h1>Welcome, {email}</h1>
+            <h1>Welcome</h1>
             <Button onClick={onLogoutBtnClick} variant='outline-secondary'>Logout</Button>
         </Container>
     );
