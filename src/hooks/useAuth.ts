@@ -1,7 +1,14 @@
-import {useSelector} from "react-redux";
+import {useAppSelector} from "./redux-hooks.ts";
 
-export const useAuth = () => {
-    const {email, token, id} = useSelector(state => state.user)
+interface IUseAuthReturn {
+    isAuth: boolean
+    email: string | null
+    token: string | null
+    id: string | null
+}
+
+export const useAuth = ():IUseAuthReturn  => {
+    const {email, token, id} = useAppSelector(state => state.user)
 
     return {
         isAuth: !!email,

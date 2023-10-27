@@ -1,15 +1,15 @@
-import React from 'react';
-import {Button, Container, Nav, Navbar} from "react-bootstrap";
+import {FC} from 'react';
+import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link, Outlet} from "react-router-dom";
 import logo from '../assets/firebase-icon.svg'
 import {useAuth} from "../hooks/useAuth.ts";
 import {FiLogOut} from "react-icons/fi";
-import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice.ts";
+import {useAppDispatch} from "../hooks/redux-hooks.ts";
 
-const AppNavbar = () => {
+const AppNavbar: FC = () => {
     const {isAuth, email} = useAuth()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     return (
         <>
@@ -33,7 +33,7 @@ const AppNavbar = () => {
                         {isAuth &&
                             <div className='d-flex align-items-center justify-content-around'>
                                 <Navbar.Text className='me-1'>
-                                    {email.substring(0, email.indexOf('@'))}
+                                    {email?.substring(0, email?.indexOf('@'))}
                                 </Navbar.Text>
                                 <FiLogOut
                                     style={{cursor: 'pointer'}}

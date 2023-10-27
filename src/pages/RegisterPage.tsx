@@ -1,9 +1,9 @@
-import React from 'react';
+import {FC} from 'react';
 import {Container} from "react-bootstrap";
 import SignUp from "../shared/SignUp.tsx";
 import {Link} from "react-router-dom";
 
-const RegisterPage = () => {
+const RegisterPage: FC = () => {
     return (
         <Container className='text-center'>
             <h1>Register</h1>

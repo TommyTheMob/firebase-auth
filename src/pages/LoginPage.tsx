@@ -1,9 +1,9 @@
-import React from 'react';
+import {FC} from 'react';
 import {Container} from "react-bootstrap";
 import Login from "../shared/Login.tsx";
 import {Link} from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
     return (
         <Container className='text-center'>
             <h1>Login</h1>

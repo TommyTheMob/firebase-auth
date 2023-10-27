@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
+import {useEffect, FC} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../hooks/useAuth.ts";
 import {Button, Container} from "react-bootstrap";
-import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice.ts";
-const HomePage = () => {
+import {useAppDispatch} from "../hooks/redux-hooks.ts";
+
+const HomePage: FC = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const { isAuth, email } = useAuth()
+    const dispatch = useAppDispatch()
+    const { isAuth} = useAuth()
 
     useEffect(() => {
         if (!isAuth) {

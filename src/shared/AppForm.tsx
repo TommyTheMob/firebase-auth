@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState, FC} from 'react';
 import {Button, Container, Form} from "react-bootstrap";
 import googleLogo from '../assets/Google__G__Logo.svg';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -6,7 +6,12 @@ import {setUser} from "../store/slices/userSlice.ts";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
-const AppForm = ({ title, handleClick }) => {
+interface AppFormProps {
+    title: string;
+    handleClick: (email: string, password: string) => void
+}
+
+const AppForm: FC<AppFormProps> = ({ title, handleClick }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -22,7 +27,7 @@ const AppForm = ({ title, handleClick }) => {
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,
-                    token: user.accessToken
+                    token: user.refreshToken
                 }))
                 navigate('/')
             })
