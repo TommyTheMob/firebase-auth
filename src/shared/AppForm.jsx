@@ -2,16 +2,30 @@ import React, {useState} from 'react';
 import {Button, Container, Form} from "react-bootstrap";
 import googleLogo from '../assets/Google__G__Logo.svg';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {setUser} from "../store/slices/userSlice.js";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const AppForm = ({ title, handleClick }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const onGoogleBtnClick = () => {
         const auth = getAuth()
         const provider = new GoogleAuthProvider()
         signInWithPopup(auth, provider)
-            .then(res => console.log(res))
+            .then(({ user }) => {
+                console.log(user)
+                dispatch(setUser({
+                    email: user.email,
+                    id: user.uid,
+                    token: user.accessToken
+                }))
+                navigate('/')
+            })
     }
 
     return (

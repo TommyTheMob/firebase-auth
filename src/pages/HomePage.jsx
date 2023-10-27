@@ -4,7 +4,6 @@ import { useAuth } from "../hooks/useAuth.js";
 import {Button, Container} from "react-bootstrap";
 import {useDispatch} from "react-redux";
 import {removeUser} from "../store/slices/userSlice.js";
-
 const HomePage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
